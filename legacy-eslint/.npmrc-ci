@@ -1,0 +1,21 @@
+registry=https://m-files.pkgs.visualstudio.com/_packaging/Mirror/npm/registry/
+                        
+always-auth=true
+
+; begin auth token
+//m-files.pkgs.visualstudio.com/_packaging/Internal_2/npm/registry/:username=m-files
+//m-files.pkgs.visualstudio.com/_packaging/Internal_2/npm/registry/:_password=${NPM_PUSH_TOKEN}
+//m-files.pkgs.visualstudio.com/_packaging/Internal_2/npm/registry/:email=npm requires email to be set but doesn't use the value
+//m-files.pkgs.visualstudio.com/_packaging/Internal_2/npm/:username=m-files
+//m-files.pkgs.visualstudio.com/_packaging/Internal_2/npm/:_password=${NPM_PUSH_TOKEN}
+//m-files.pkgs.visualstudio.com/_packaging/Internal_2/npm/:email=npm requires email to be set but doesn't use the value
+; end auth token
+
+; begin auth token 
+//m-files.pkgs.visualstudio.com/_packaging/Mirror/npm/registry/:username=m-files 
+//m-files.pkgs.visualstudio.com/_packaging/Mirror/npm/registry/:_password=${NPM_PUSH_TOKEN}
+//m-files.pkgs.visualstudio.com/_packaging/Mirror/npm/registry/:email=npm requires email to be set but doesn't use the value
+//m-files.pkgs.visualstudio.com/_packaging/Mirror/npm/:username=m-files 
+//m-files.pkgs.visualstudio.com/_packaging/Mirror/npm/:_password=${NPM_PUSH_TOKEN}
+//m-files.pkgs.visualstudio.com/_packaging/Mirror/npm/:email=npm requires email to be set but doesn't use the value
+; end auth token

@@ -1,0 +1,6 @@
+
+# Configuration for local development
+.eslintrc.js
+
+# Test files for testing the rule sets
+tests

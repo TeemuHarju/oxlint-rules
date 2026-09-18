@@ -1,0 +1,41 @@
+{
+  "name": "@m-files/eslint-config-common-rules",
+  "version": "3.0.0",
+  "description": "Common M-Files ESLint rules",
+  "scripts": {
+    "lint": "eslint . --ignore-pattern 'tests/*'",
+    "lint:fix": "eslint . --ignore-pattern 'tests/*' --fix",
+    "lint:tests": "eslint --config tests/eslint.config.js tests",
+    "lint:tests:fix": "eslint --config tests/eslint.config.js tests --fix",
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.motivesys.com:style/eslint-rules.git"
+  },
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.39.4",
+    "@stylistic/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "eslint-plugin-jsdoc": "^50.6.2",
+    "eslint-plugin-n": "^17.15.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-sonarjs": "^4.0.3",
+    "eslint-plugin-unicorn": "^56.0.1",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "eslint": "^9.39.4",
+    "typescript": "^5.7.3",
+    "vitest": "^4.1.7"
+  }
+}

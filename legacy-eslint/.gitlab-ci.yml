@@ -1,0 +1,63 @@
+# Stages.
+stages:
+  - build
+  - test
+  - publish
+
+include:
+  - project: "secops/secscans/cicd-security-templates"
+    file:
+      - ".dependency-tracking-template.yml"
+
+default:
+  tags:
+    # Change this to kubernetes-linux-protected_$CI_COMMIT_REF_PROTECTED once Autobots have approved.
+    - kubernetes-linux-protected_false
+
+# Build ESLint configuration package.
+build-package:
+  stage: build
+  image: node:22
+  script:
+    - echo "Building ESLint configuration package."
+    - echo "Node version > $(node --version)"
+    - echo "NPM version > $(npm --version)"
+    - npm ci --userconfig .npmrc-ci
+  when: always
+
+# Run integration tests against the rulesets.
+test-package:
+  stage: test
+  image: node:22
+  script:
+    - npm ci --userconfig .npmrc-ci
+    - npm test
+  needs:
+    - job: build-package
+  when: always
+
+# Publish ESLint configuration package.
+publish-package:
+  stage: publish
+  image: node:22
+  script:
+    - echo "Publishing ESLint configuration package."
+    - npm publish --userconfig .npmrc-ci --registry https://m-files.pkgs.visualstudio.com/_packaging/Internal_2/npm/registry/
+  needs:
+    - job: test-package
+  when: manual
+
+# Dependency tracking job.
+test dependency tracking:
+  before_script:
+    - export SBOM_PROJECT_VERSION=$(node -p "require('./package.json').version")
+    - 'echo "Package version: $SBOM_PROJECT_VERSION"'
+  extends: .dependency-tracking-scan-base
+  stage: publish
+  needs:
+    - job: publish-package
+  variables:
+    SBOM_PROJECT_TYPE: "javascript"
+    SBOM_PROJECT_NAME: "M-Files ESLint Configuration"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

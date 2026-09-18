@@ -1,0 +1,70 @@
+{
+	"$schema": "https://json.schemastore.org/package.json",
+	"name": "oxlint-rules",
+	"version": "0.1.0",
+	"description": "Personal Oxlint rules shared across multiple repositories",
+	"keywords": [
+		"lint",
+		"oxlint",
+		"oxlint-plugin",
+		"typescript"
+	],
+	"license": "MIT",
+	"author": "Teemu Harju",
+	"files": [
+		"dist",
+		"README.md",
+		"docs",
+		"LICENSE"
+	],
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./eslint-compat": {
+			"types": "./dist/eslint-compat.d.ts",
+			"default": "./dist/eslint-compat.js"
+		}
+	},
+	"scripts": {
+		"build": "tsdown",
+		"check": "pnpm format:check && pnpm lint && pnpm test && pnpm typecheck && pnpm build",
+		"format": "oxfmt",
+		"format:check": "oxfmt --check",
+		"lint": "oxlint src test",
+		"test": "pnpm build && vitest run",
+		"typecheck": "tsc --noEmit",
+		"prepack": "pnpm build"
+	},
+	"dependencies": {
+		"@oxlint/plugins": "1.78.0",
+		"eslint": "9.39.4",
+		"eslint-plugin-jsdoc": "50.8.0",
+		"eslint-plugin-n": "17.24.0",
+		"eslint-plugin-react": "7.37.5",
+		"eslint-plugin-security": "3.0.1",
+		"eslint-plugin-sonarjs": "4.0.3",
+		"eslint-plugin-unicorn": "56.0.1"
+	},
+	"devDependencies": {
+		"@oxlint/migrate": "1.78.0",
+		"@types/eslint": "9.6.1",
+		"@types/node": "24.10.1",
+		"oxfmt": "0.68.0",
+		"oxlint": "1.78.0",
+		"tsdown": "0.22.0",
+		"typescript": "6.0.3",
+		"vitest": "4.1.7"
+	},
+	"peerDependencies": {
+		"oxlint": "1.78.0"
+	},
+	"engines": {
+		"node": ">=22.18.0"
+	},
+	"packageManager": "pnpm@11.19.0"
+}
